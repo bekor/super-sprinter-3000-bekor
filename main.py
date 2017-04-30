@@ -4,10 +4,10 @@ import common
 
 app = Flask(__name__)
 
-
+#NEM KEZELTED LE HA ID nincs a databazbe
 @app.route('/story', methods=['GET', 'POST'])
 @app.route('/story/<int:story_id>', methods=['GET', 'POST'])
-def story(story_id = None):
+def story(story_id=None):
     default_list = ["", "", "", "", 1000, 2.5, ""]
     data = data_manager.get_datatable_from_file("data/story.csv")
     if request.method == 'POST':
@@ -24,6 +24,7 @@ def story(story_id = None):
             return render_template("form.html.j2", form_data=story_id_list)
         return render_template("form.html.j2", form_data=default_list)
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/list', methods=['GET', 'POST'])
 def data_table():
@@ -37,18 +38,17 @@ def data_table():
                 new_data = common.delete_data_row(data, form_data[1])
                 return render_template("list.html.j2", data=new_data)
         elif len(dict_data_form) >= 3:
-            form_data = [d for d in dict_data_form.values()]
-            if form_data[-1] == "Create":
-                data = common.add_row_to_stories(form_data[:-1], data)
-                return  render_template("list.html.j2", data=data)
-            elif "Update" in form_data[-1]:
-                form_data.insert(0, str(form_data[-1][6:]))
-                data = common.update_row(form_data[:-1], data)
-                return  render_template("list.html.j2", data=data)
+            form_data = common.handle_requestform(dict_data_form)
+            if form_data[6] == "Create":
+                data = common.add_row_to_stories(form_data[:6], data)
+            elif form_data[6]:
+                form_data.insert(0, str(form_data[6][6:]))
+                data = common.update_row(form_data[:7], data)
+            return render_template("list.html.j2", data=data)
         else:
             return render_template("form.html.j2", data=data)
     return render_template("list.html.j2", data=data)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

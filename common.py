@@ -45,3 +45,17 @@ def delete_data_row(data, id_story):
             new_data[idx][0] = str(idx)
     data_manager.write_datatable_to_file("data/story.csv", new_data)
     return new_data
+
+def handle_requestform(req_form):
+    form = [req_form["story_title"],
+            req_form["user_story"],
+            req_form["criteria"],
+            req_form["values"],
+            req_form["estimation"],
+            req_form["status"],
+            ]
+    if "update" in req_form:
+        form.append(req_form["update"])
+    if "create" in req_form:
+        form.append(req_form["create"])
+    return form
