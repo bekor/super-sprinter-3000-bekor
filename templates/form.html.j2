@@ -9,51 +9,53 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="style.css")}}">
 </head>
 <body>
-    <form action="http://127.0.0.1:5000/list" method="POST">
-        <div id="content">
-            {% if not form_data[0] %}
-                <h1>User Story Manager - Add new Story</h1>
-            {% else %}
-                <h1>User Story Manager - Edit Story</h1>
-            {% endif %}
-            <div>
-                <label for="story_titel">Story Title</label><br />
-                <input type="text" name="story_title" value="{{ form_data[1] }}"/>
-            </div>
-            <div>
-                <label for="user_story">User Story</label><br />
-                <textarea row="5" cols="20" name="user_story">{{ form_data[2] }}</textarea>
-            </div>
-            <div>
-                <label for="criteria">Acceptance criteria</label><br />
-                <textarea row="5" cols="20" name="criteria">{{ form_data[3] }}</textarea>
-            </div>
-            <div>
-                <label for="value">Business Value</label><br />
-                <input type="number" name="values" min="100" max="1500" step="100" value="{{ form_data[4] }}">
-            </div>
-            <div>
-                <label for="estimate">Estimation (h)</label><br />
-                <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="{{ form_data[5] }}">
-            </div>
-            <div>
-                <label for="status">Status</label><br />
-                <select name="status">
-                    <option value="Planning">Planning</option>
-                    <option value="TODO">TODO</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Review">Review</option>
-                    <option value="Done">Done</option>
-                </select>
-            </div>
-            <div>
+    <div class="formstyle">
+        <form action="http://127.0.0.1:5000/list" method="POST">
+            <div id="content">
                 {% if not form_data[0] %}
-                    <button class="create buttoneffect" type="submit" name="create" value="Create">Create</button>
+                    <h1>User Story Manager - Add new Story</h1>
                 {% else %}
-                    <button class="update buttoneffect" type="submit" name="create" value="Update{{ form_data[0] }}">Update</button>
+                    <h1>User Story Manager - Edit Story</h1>
                 {% endif %}
+                <div>
+                    <label for="story_titel">Story Title</label><br />
+                    <input type="text" name="story_title" value="{{ form_data[1] }}"/>
+                </div>
+                <div>
+                    <label for="user_story">User Story</label><br />
+                    <textarea row="5" cols="20" name="user_story">{{ form_data[2] }}</textarea>
+                </div>
+                <div>
+                    <label for="criteria">Acceptance criteria</label><br />
+                    <textarea row="5" cols="20" name="criteria">{{ form_data[3] }}</textarea>
+                </div>
+                <div>
+                    <label for="value">Business Value</label><br />
+                    <input type="number" name="values" min="100" max="1500" step="100" value="{{ form_data[4] }}">
+                </div>
+                <div>
+                    <label for="estimate">Estimation (h)</label><br />
+                    <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="{{ form_data[5] }}">
+                </div>
+                <div>
+                    <label for="status">Status</label><br />
+                    <select name="status">
+                        <option value="Planning">Planning</option>
+                        <option value="TODO">TODO</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Review">Review</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </div>
+                <div>
+                    {% if not form_data[0] %}
+                        <button class="create buttoneffect" type="submit" name="create" value="Create">Create</button>
+                    {% else %}
+                        <button class="update buttoneffect" type="submit" name="create" value="Update{{ form_data[0] }}">Update</button>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 </html>

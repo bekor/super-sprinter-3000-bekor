@@ -46,6 +46,10 @@ def delete_data_row(data, id_story):
     data_manager.write_datatable_to_file("data/story.csv", new_data)
     return new_data
 
+
+# transforming request.form to list
+#
+# @req_form: dictionary with specified keys
 def handle_requestform(req_form):
     form = [req_form["story_title"],
             req_form["user_story"],

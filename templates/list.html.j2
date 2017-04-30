@@ -6,34 +6,39 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <h1>User Story Manager</h1>
-    <form action="http://127.0.0.1:5000/story" method="POST">
-        <button class="create buttoneffect" name="new_story" value="">Add new User Story</button>
-    </form>
-    <br>
-    <table>
-        {% for row in data %}
-        <tr>
-            {% for item in row %}
+    <div class="table_wrapper">
+        <h1>User Story Manager</h1>
+        <form action="http://127.0.0.1:5000/story" method="POST">
+            <button class="create buttoneffect" name="new_story" value="">Add new User Story</button>
+        </form>
+        <br>
+        <table>
+            {% for row in data %}
+            <tr>
+                {% for item in row %}
                 <td>{{ item }}</td>
-            {% else %}
+                {% else %}
                 <td>No entries here so far</td>
-            {% endfor %}
-            {% if row[0] == "ID" %}
+                {% endfor %}
+                {% if row[0] == "ID" %}
                 <td>Edit / Del</td>
-            {% else %}
+                {% else %}
                 <td>
-                    <form action="http://127.0.0.1:5000/story/{{ row[0] }}" method="POST"><button class="buttoneffect" name="editrow" value="{{ row[0] }}">
-                        <i class="material-icons" name="edit">mode_edit</i>
-                    </button></form>
-                    <form action="http://127.0.0.1:5000/list" method="POST"><button class="buttoneffect" name="deleterow" value="{{ row[0] }}">
-                        <i class="material-icons" name="delete">delete_forever</i>
-                    </button></form>
+                    <div class="modifybutton" style="float: left">
+                        <form action="http://127.0.0.1:5000/story/{{ row[0] }}" method="POST"><button class="buttoneffect" name="editrow" value="{{ row[0] }}">
+                            <i class="material-icons" name="edit">mode_edit</i>
+                        </button></form>
+                    </div>
+                    <div class="modifybutton" style="float: right">
+                        <form action="http://127.0.0.1:5000/list" method="POST"><button class="buttoneffect" name="deleterow" value="{{ row[0] }}">
+                            <i class="material-icons" name="delete">delete_forever</i>
+                        </button></form>
+                    </div>
                 </td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </table>
-
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

@@ -1,11 +1,32 @@
+.table_wrapper{
+    text-align: center;
+    position: relative;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgba(251, 219, 69, 0.15);
+    display: table
+}
 
 table, th, td{
     border: 1px solid black;
+    border-radius: 3px;
+}
+
+td{
+    text-align: center;
+    padding: 5px;
 }
 
 input {
     width: 30%;
     border: 1px solid black;
+    padding: 5px;
+}
+
+label{
+    font-size: 18px;
+    font-family: "Times New Roman", Georgia, Serif;
 }
 
 textarea {
@@ -29,7 +50,10 @@ button{
 }
 
 #content{
-    position: relative;
+    background-color: #35a8cc;
+    border-radius: 20px;
+    padding: 15px;
+    position: absolute;
     max-width: 600px;
     text-align: center;
     font-family: "Times New Roman", Georgia, Serif;
@@ -56,6 +80,7 @@ button{
 }
 
 .buttoneffect:hover{
+    box-shadow: 5px 5px 10px #000000;
     background-color: #4CAF50;
     color: white;
 }
@@ -70,4 +95,8 @@ button{
     background-color: #ffb800;
     color: white;
     padding: 15px;
+}
+
+.modifybutton{
+    margin: 5px;
 }

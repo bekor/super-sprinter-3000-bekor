@@ -1,14 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 import data_manager
 import common
 
 app = Flask(__name__)
 
-#NEM KEZELTED LE HA ID nincs a databazbe
+
 @app.route('/story', methods=['GET', 'POST'])
 @app.route('/story/<int:story_id>', methods=['GET', 'POST'])
 def story(story_id=None):
-    default_list = ["", "", "", "", 1000, 2.5, ""]
+    default_form = ["", "", "", "", 1000, 2.5, ""]
     data = data_manager.get_datatable_from_file("data/story.csv")
     if request.method == 'POST':
         button_data = common.handle_button_request(request.form)
@@ -16,13 +16,15 @@ def story(story_id=None):
             update_list = data[int(button_data[1])]
             return render_template("form.html.j2", form_data=update_list)
         else:
-            return render_template("form.html.j2", form_data=default_list)
+            return render_template("form.html.j2", form_data=default_form)
     else:
-        default_list[0] = str(story_id)
-        if story_id:
+        if story_id and story_id < len(data):
+            default_form[0] = str(story_id)
             story_id_list = data[story_id]
             return render_template("form.html.j2", form_data=story_id_list)
-        return render_template("form.html.j2", form_data=default_list)
+        if story_id >= len(data):
+            return abort(404)
+        return render_template("form.html.j2", form_data=default_form)
 
 
 @app.route('/', methods=['GET', 'POST'])
