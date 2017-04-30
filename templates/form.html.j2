@@ -48,9 +48,9 @@
             </div>
             <div>
                 {% if not form_data[0] %}
-                    <button type="submit" name="create" value="Create">Create</button>
+                    <button class="create buttoneffect" type="submit" name="create" value="Create">Create</button>
                 {% else %}
-                    <button type="submit" name="create" value="Update{{ form_data[0] }}">Update</button>
+                    <button class="update buttoneffect" type="submit" name="create" value="Update{{ form_data[0] }}">Update</button>
                 {% endif %}
             </div>
         </div>

@@ -8,17 +8,21 @@ app = Flask(__name__)
 @app.route('/story', methods=['GET', 'POST'])
 @app.route('/story/<int:story_id>', methods=['GET', 'POST'])
 def story(story_id = None):
+    default_list = ["", "", "", "", 1000, 2.5, ""]
+    data = data_manager.get_datatable_from_file("data/story.csv")
     if request.method == 'POST':
-        data = data_manager.get_datatable_from_file("data/story.csv")
         button_data = common.handle_button_request(request.form)
         if button_data and button_data[0] == "editrow":
-            data = data_manager.get_datatable_from_file("data/story.csv")
             update_list = data[int(button_data[1])]
             return render_template("form.html.j2", form_data=update_list)
         else:
-            empty_list = ["", "", "", "", 1000, 2.5, ""]
-            return render_template("form.html.j2", form_data=empty_list)
-
+            return render_template("form.html.j2", form_data=default_list)
+    else:
+        default_list[0] = str(story_id)
+        if story_id:
+            story_id_list = data[story_id]
+            return render_template("form.html.j2", form_data=story_id_list)
+        return render_template("form.html.j2", form_data=default_list)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/list', methods=['GET', 'POST'])

@@ -8,7 +8,7 @@
 <body>
     <h1>User Story Manager</h1>
     <form action="http://127.0.0.1:5000/story" method="POST">
-        <button name="new_story" value="">Add new User Story</button>
+        <button class="create buttoneffect" name="new_story" value="">Add new User Story</button>
     </form>
     <br>
     <table>
@@ -23,10 +23,10 @@
                 <td>Edit / Del</td>
             {% else %}
                 <td>
-                    <form action="http://127.0.0.1:5000/story/{{ row[0] }}" method="POST"><button name="editrow" value="{{ row[0] }}">
+                    <form action="http://127.0.0.1:5000/story/{{ row[0] }}" method="POST"><button class="buttoneffect" name="editrow" value="{{ row[0] }}">
                         <i class="material-icons" name="edit">mode_edit</i>
                     </button></form>
-                    <form action="http://127.0.0.1:5000/list" method="POST"><button name="deleterow" value="{{ row[0] }}">
+                    <form action="http://127.0.0.1:5000/list" method="POST"><button class="buttoneffect" name="deleterow" value="{{ row[0] }}">
                         <i class="material-icons" name="delete">delete_forever</i>
                     </button></form>
                 </td>

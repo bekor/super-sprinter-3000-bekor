@@ -4,21 +4,70 @@ table, th, td{
 }
 
 input {
-    width: 40%;
+    width: 30%;
+    border: 1px solid black;
 }
 
 textarea {
+    padding: 4px;
     height: 150px;
-    width: 40%;
-    margin-bottom: 10px;
+    width: 50%;
     resize: none;
+    border: 1px solid black;
+    font-size: 15px;
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+select{
+    border: 1px solid black;
+}
+
+button{
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 #content{
     position: relative;
+    max-width: 600px;
+    text-align: center;
+    font-family: "Times New Roman", Georgia, Serif;
 }
 
-button{
+#content div{
+    position: relative;
+    margin-bottom: 10px
+}
+
+#content div label{
+    padding: 4px;
+    font-weight: bold;
+}
+
+#content button{
     float: right;
     margin-right: 100px;
+}
+
+.buttoneffect{
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.buttoneffect:hover{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.update{
+    background-color: #0088ff;
+    color: white;
+    padding: 15px;
+}
+
+.create{
+    background-color: #ffb800;
+    color: white;
+    padding: 15px;
 }
